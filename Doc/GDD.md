@@ -100,7 +100,131 @@ Ambas mecánicas tienen el propósito de llevar al jugador al siguiente punto de
 
 ### Flujo de Juego
 
-> *Describe la secuencia del juego durante la partida, en una ejecución normal. Se debe escribir en orden de secuencia, desde el inicio hasta el final de la partida. Debería ser por medio de un diagrama de flujo*
+![Game flow](./img/gameflow.png)
+
+Pantalla de inicio del juego
+
+|
+
+V
+
+Jugador presiona enter
+
+|
+
+V
+
+Carta de Mortimer
+
+|
+
+V
+
+Jugador presiona enter
+
+|
+
+V
+
+Outside. Casa de Mortimer
+Comienzo del juego:
+ - El jugador puede mover al personaje
+ - El jugador puede saltar
+
+|
+
+V
+
+Diálogo con Atticus. (Trigger)
+- Se activa la Bubble Mask
+- El jugador debe recoger la Bubble Mask para avanzar.
+
+|
+
+V
+
+Bubble Mask activada?
+
+|
+
+V
+
+Se abre la barrera al sótano. INSIDE.
+
+|
+
+V
+
+El jugador avanza por las chambers 1, 2 , 3, 4, 5 y 6.
+- Se sortean o vencen enemigos que se van presentando poco a poco. 
+- Se avanza a través de las plataformas.
+- Se activan los Trigger de cambios de cámara.
+
+
+|
+
+V
+
+Chamber 7. Recovery Life. Trigger.
+- Se puede cargar el tanque de vida a 100. 
+
+
+|
+
+V
+
+Chamber 8. KILL EM ALL
+- Se cierran las compuertas
+- Se deben vencer todos los enemigos para que las puertas se abran de nuevo. 
+
+
+|
+
+V
+
+Chamber 9. Dialogo con Ba.
+- Se activa el diálogo con Ba. 
+- Se activa el pedestal de la Chamber 5.
+
+
+|
+
+V
+
+El jugador retrocede hasta la Chamber 5.
+- Se coloca sobre el pedestal.
+- Obtiene el Bubbleler.
+
+
+|
+
+V
+
+Bubbleler OK?
+
+
+|
+
+V
+
+Avanza hacia arriba para salir al exterior.
+
+
+|
+
+V
+
+Fin del juego.
+
+** Cabe destacar que, desde cualquier punto del juego, se puede abandonar la partida o pausarla. Además, Si la vida es = 0, se activará la escena de GAME OVER:
+
+GAME OVER?
+
+|
+
+V
+
+INSIDE DE BASEMENT - O - FIN DE LA PARTIDA
 
 ### Fin de Juego
 
@@ -165,28 +289,31 @@ Jugables:
 
 - __Hop__: nuestra protagonista, una niña esqueleto con cabeza de sapita en silla de ruedas que se embarca en la misma aventura que su abuelo en su día. Puede desplazarse horizontalmente en su silla y saltar también con ella. Cuando obtiene la BubbleMask, una máscara capacitada para emitir burbujas destructivas, puede, además, disparar. 
 Con Hop podemos diferenciar entre tres estados:
-    - __Hop sin máscara__, en el inicio del juego. 
-    - __Hop con la BubbleMask__, preparada para la acción y con toda la jugabilidad asociada.
-    - __Hop en Bubbleler__, la burbuja-nave desde la que puede disparar en cuatro direcciones.
+    - ![Hop](./img/Hopnomask.png) __Hop sin máscara__, en el inicio del juego. 
+    - ![Hop](./img/Hopmask.png) __Hop con la BubbleMask__, preparada para la acción y con toda la jugabilidad asociada. 
+    - ![Bubbleler](./img/bubbleler.png)__Hop en Bubbleler__, la burbuja-nave desde la que puede disparar en cuatro direcciones.
 
 Secundarios:
 
 - __Mortimer__: el abuelo fallecido de Hop. En la demo, no se muestra su apariencia. Fue un gran inventor y aventurero que recorrió el mundo, encontrando por el camino grandes amigos y lugares muy especiales.
 
-- __Atticus__: el vecino de Mortimer en el pueblo. Atticus es un esqueleto con cabeza de cuervo que pasa el día en la entrada de su casa, columpiándose. No se gusta nada el sótano de su casa ya que está lleno de bichos. Era un gran amigo de Mortimer y ayudará a Hop a comenzar su aventura.
+- ![Atticus](./img/Atticus.png)__Atticus__: el vecino de Mortimer en el pueblo. Atticus es un esqueleto con cabeza de cuervo que pasa el día en la entrada de su casa, columpiándose. No se gusta nada el sótano de su casa ya que está lleno de bichos. Era un gran amigo de Mortimer y ayudará a Hop a comenzar su aventura. 
+
 
 - __Ba__: el antiguo sacerdote de uno de los templos que se encontró Mortimer a lo largo de su vida. Mortimer salvó de la ruina su templo, y Ba se lo recompensó de por vida custodiando la tecnología del Bubbleler, que ahora entregará a Hop como deseaba su abuelo. 
 
+![Ba](./img/ba.png)
+
 Enemigos:
 
-- __Spiked Ball__: una bola de pinchos que se desplaza lateralmente o verticalmente en línea. No se puede abatir, sólo esquivar. Hace daño por colisión, con OnCollisionStay.
-- __Skancer__: una oruga/serpiente con un gran ojo que dispara cuando el jugador está en su campo de visión. Provoca daño por disparo y también por proximidad, pero sólo una vez por cada colisión. Para vencerlo, hay que dispararle 5 veces. 
-- __Totem__: un tótem ancestral que está disparando continuamente. Es un enemigo robusto pero completamente estático. Necesita 10 impactos para ser abatido. También hace daño por colisión. 
-- __Tankstrich__: un tanque con tres cabezas de avestruz, se trata de un enemigo grande y muy pesado pero que no dispara. Su principal forma de hacer daño a Hop es avanzar hacia ella y por OnCollisionStay, acabar con su vida. Necesita 25 impactos para ser abatida. 
-- __Medusa__: es un enemigo aéreo que permanece flotando, añadiendo más complejidad espacial. No dispara, provoca daño por colisión. Necesita 5 disparos para ser abatida. 
-- __Big Eye__: Un gran ojo observador desde las alturas que está acechando hasta que alguien entra en su campo de visión, que será cuando dispare. Necesita 4 impactos de bala. 
-- __Snake Skull__: Una gran cabeza de serpiente que se mueve frenéticamente de un punto a otro, esperando morder. Provoca mucho daño por colisión con OnCollisionStay. Necesita 6 disparos para ser abatido.
-- __Zerso__: El único miniboss que veremos en la demo. Es un enemigo arácnido, más grande que el resto y que dispara cuando el jugador está en su campo de visión. Hace mucho daño por colisión, con OnCollisionStay. Necesita 50 disparos para ser abatido. 
+- ![Spiked Ball](./img/spiked_bal_1.png) __Spiked Ball__: una bola de pinchos que se desplaza lateralmente o verticalmente en línea. No se puede abatir, sólo esquivar. Hace daño por colisión, con OnCollisionStay. 
+- ![Skancer](./img/escancer_1.png) __Skancer__: una oruga/serpiente con un gran ojo que dispara cuando el jugador está en su campo de visión. Provoca daño por disparo y también por proximidad, pero sólo una vez por cada colisión. Para vencerlo, hay que dispararle 5 veces. 
+- ![Totem](./img/totem_standing.png) __Totem__: un tótem ancestral que está disparando continuamente. Es un enemigo robusto pero completamente estático. Necesita 10 impactos para ser abatido. También hace daño por colisión. 
+- ![Tankstrich](./img/tankstrich_1.png)__Tankstrich__: un tanque con tres cabezas de avestruz, se trata de un enemigo grande y muy pesado pero que no dispara. Su principal forma de hacer daño a Hop es avanzar hacia ella y por OnCollisionStay, acabar con su vida. Necesita 25 impactos para ser abatida. 
+- ![Medusa](./img/medusa_1.png)__Medusa__: es un enemigo aéreo que permanece flotando, añadiendo más complejidad espacial. No dispara, provoca daño por colisión. Necesita 5 disparos para ser abatida. 
+- ![Big Eye](./img/big_eye1.png)__Big Eye__: Un gran ojo observador desde las alturas que está acechando hasta que alguien entra en su campo de visión, que será cuando dispare. Necesita 4 impactos de bala. 
+- ![Snake Skull](./img/snake_skull1.png)__Snake Skull__: Una gran cabeza de serpiente que se mueve frenéticamente de un punto a otro, esperando morder. Provoca mucho daño por colisión con OnCollisionStay. Necesita 6 disparos para ser abatido.
+- ![Zerso](./img/zerso_quiet_1.png)__Zerso__: El único miniboss que veremos en la demo. Es un enemigo arácnido, más grande que el resto y que dispara cuando el jugador está en su campo de visión. Hace mucho daño por colisión, con OnCollisionStay. Necesita 50 disparos para ser abatido. 
 
 ### Objetos
 
@@ -205,7 +332,6 @@ Todos estos objetos tienen asociados o bien un OnTriggerEnter2D(como en el caso 
 ### Flujo de Pantallas
 
 ![Flujo de pantallas](./img/FLUJODEPANTALLAS.png)
-
 
 En total hay 6 escenas en el juego, una de ellas se divide en varias salas (la escena de interiores). Además, cada escena se separa entre sí por un efecto de *fade to black* a modo de transición. 
 
